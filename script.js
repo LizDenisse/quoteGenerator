@@ -10,14 +10,14 @@ const loader= document.getElementById('loader');
 
 //show loading 
 
-function loading() {
+function showLoadingSpinner() {
     loader.hidden= false; 
     quoteContainer.hidden= true; 
 
 }
 
 // hide loader 
-function complete()  {
+function removeLoadingSpinner()  {
 
     quoteContainer.hidden=false;
     loader.hidden= true;
@@ -27,7 +27,7 @@ function complete()  {
 //Show new quote 
 
 function newQuote() {
-    loading();
+    showLoadingSpinner();
     //pick random quoe
 const quote =apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
 
@@ -49,7 +49,7 @@ else {
 
 //Set Quote, hide loader 
 quoteText.textContent=quote.text;
-complete();
+removeLoadingSpinner();
 
 }
 
@@ -57,7 +57,7 @@ complete();
 
 
 async function getQuote() {
-    loading();  //if you do not add it here as well when loading you will see the quote container empty next to the loader
+    showLoadingSpinner();  //if you do not add it here as well when loading you will see the quote container empty next to the loader
     const apiUrl = 'https://type.fit/api/quotes';
 try {
     const response= await fetch(apiUrl);
